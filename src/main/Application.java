@@ -26,11 +26,11 @@ public class Application extends JFrame {
         this.setLayout(new BorderLayout());
         mainPanel = new JPanel();  
         this.add(mainPanel, BorderLayout.CENTER);
-        JMenuItem mi1 = new JMenuItem("Add new user");
-        JMenuItem mi2 = new JMenuItem("List users");
+        JMenuItem mi1 = new JMenuItem("Add new client");
+        JMenuItem mi2 = new JMenuItem("List clients");
         mi2.addActionListener(new clientListActionListener(mainPanel));
         mi1.addActionListener(new newClientActionListener(mainPanel));
-        JMenu m1 = new JMenu("Users");
+        JMenu m1 = new JMenu("Clients");
         m1.add(mi1);
         m1.add(mi2);
         JMenuBar bar = new JMenuBar();
@@ -43,7 +43,7 @@ public class Application extends JFrame {
     public Application() {
         super("Basic of  programming 3 - Homework - Lupák Gábor - YBMX5Q");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(500, 200));
+        setMinimumSize(new Dimension(500, 300));
         initComponents();
     };
         

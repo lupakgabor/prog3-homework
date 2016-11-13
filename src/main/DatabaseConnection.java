@@ -65,6 +65,33 @@ public class DatabaseConnection {
 			e.printStackTrace();
 		}
 	}
+	
+	public void insertData(String table,List<String> fields, List<String> values){
+		try{
+			String sql = "INSERT INTO " + table + " ( ";
+			for (int i = 0; i < fields.size(); i++) {
+				if(i == 0){
+					sql += fields.get(i);
+				} else {
+					sql += ", " + fields.get(i);
+				}
+			}
+			sql = sql + ") VALUES ( ";
+			for (int i = 0; i < values.size(); i++) {
+				if(i == 0){
+					sql += "'" + values.get(i) + "'";
+				} else {
+					sql += ", '" + values.get(i) + "'";
+				}
+			}
+			sql = sql + ") ";
+			System.out.println(sql);
+			stmt.executeUpdate(sql);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 }
 
 

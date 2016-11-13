@@ -10,6 +10,8 @@ import javax.swing.table.AbstractTableModel;
 import main.DatabaseConnection;
 
 public class ClientStore extends AbstractTableModel  {
+
+	private static final long serialVersionUID = 1L;
 	private List<Client> clients = new ArrayList<Client>();
 		
 	public ClientStore(){
@@ -72,7 +74,11 @@ public class ClientStore extends AbstractTableModel  {
 	
 	@Override
 	public boolean isCellEditable(int row, int col){
-		return true;
+		if( col == 0 || col == 1){
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 	@Override
@@ -125,7 +131,7 @@ public class ClientStore extends AbstractTableModel  {
 	}
 	
 	@Override
-	public Class getColumnClass(int columnIndex){
+	public Class<String> getColumnClass(int columnIndex){
 		return String.class;
 	}
 	
