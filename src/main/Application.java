@@ -14,8 +14,14 @@ import java.util.List;
 
 import javax.swing.*;
 
-import client.clientListActionListener;
-import client.newClientActionListener;
+import car.CarListActionListener;
+import car.CarStore;
+import car.NewCarActionListener;
+import client.ClientListActionListener;
+import client.ClientStore;
+import client.NewClientActionListener;
+import rent.NewRentActionListener;
+import rent.RentListActionListener;
 
 
 public class Application extends JFrame {
@@ -26,15 +32,39 @@ public class Application extends JFrame {
         this.setLayout(new BorderLayout());
         mainPanel = new JPanel();  
         this.add(mainPanel, BorderLayout.CENTER);
-        JMenuItem mi1 = new JMenuItem("Add new client");
-        JMenuItem mi2 = new JMenuItem("List clients");
-        mi2.addActionListener(new clientListActionListener(mainPanel));
-        mi1.addActionListener(new newClientActionListener(mainPanel));
-        JMenu m1 = new JMenu("Clients");
-        m1.add(mi1);
-        m1.add(mi2);
+        
+        // client menu
+        JMenuItem newClientMenuItem = new JMenuItem("Add client");
+        JMenuItem lientListMenuItem = new JMenuItem("Clients list");
+        lientListMenuItem.addActionListener(new ClientListActionListener(mainPanel));
+        newClientMenuItem.addActionListener(new NewClientActionListener(mainPanel));
+        JMenu clientsMenu = new JMenu("Clients");
+        clientsMenu.add(newClientMenuItem);
+        clientsMenu.add(lientListMenuItem);
+        
+        // car menu
+        JMenuItem newCarMenuItem = new JMenuItem("Add car");
+        JMenuItem carListMenuItem = new JMenuItem("Cars lists");
+        carListMenuItem.addActionListener(new CarListActionListener(mainPanel));
+        newCarMenuItem.addActionListener(new NewCarActionListener(mainPanel));
+        JMenu carsMenu = new JMenu("Cars");
+        carsMenu.add(newCarMenuItem);
+        carsMenu.add(carListMenuItem);
+        
+        // rent menu
+        JMenuItem newRentMenuItem = new JMenuItem("New rent");
+        JMenuItem rentListMenuItem = new JMenuItem("Rent lists");
+        rentListMenuItem.addActionListener(new RentListActionListener(mainPanel));
+        newRentMenuItem.addActionListener(new NewRentActionListener(mainPanel));
+        JMenu rentsMenu = new JMenu("Rent");
+        rentsMenu.add(newRentMenuItem);
+        rentsMenu.add(rentListMenuItem);
+        
+        // create menu
         JMenuBar bar = new JMenuBar();
-        bar.add(m1);
+        bar.add(clientsMenu);
+        bar.add(carsMenu);
+        bar.add(rentsMenu);
         this.setJMenuBar(bar);
     }
     
@@ -43,7 +73,7 @@ public class Application extends JFrame {
     public Application() {
         super("Basic of  programming 3 - Homework - Lupák Gábor - YBMX5Q");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(500, 300));
+        setMinimumSize(new Dimension(800, 500));
         initComponents();
     };
         

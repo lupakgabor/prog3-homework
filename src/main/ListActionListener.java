@@ -1,36 +1,36 @@
-package client;
+package main;
 
 import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
 
-
-
-public class ClientListActionListener implements ActionListener {
+public class ListActionListener implements ActionListener {
 
 	private JPanel parentPanel;
+	private AbstractTableModel data;
 	
-	public ClientListActionListener(JPanel parentPanel){
+	public ListActionListener(JPanel parentPanel, AbstractTableModel data){
 		this.parentPanel = parentPanel;
+		this.data = data;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Listing clients in progress...");
+		System.out.println("Listing in progress...");
 		parentPanel.removeAll();
 		parentPanel.setLayout(new BorderLayout());
-		ClientStore clients = new ClientStore();
 		JTable table = new JTable();
-		table.setModel(clients);
+		table.setModel(data);
 		JScrollPane scrollPane = new JScrollPane(table);
         table.setFillsViewportHeight(true);        
         parentPanel.add(scrollPane, BorderLayout.CENTER);
         parentPanel.updateUI();
      }
+
 
 }

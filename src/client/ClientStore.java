@@ -15,6 +15,7 @@ public class ClientStore extends AbstractTableModel  {
 	private List<Client> clients = new ArrayList<Client>();
 		
 	public ClientStore(){
+		System.out.println("Client store created!");
 		DatabaseConnection db = DatabaseConnection.getInstance();
 		List<String> fields = Arrays.asList("id", "firstname", "lastname", "identifier", "drivingLicense", "birthDate", "address");
 		ResultSet rs = db.selectData("clients", fields);
@@ -29,8 +30,7 @@ public class ClientStore extends AbstractTableModel  {
 						rs.getString("birthDate"),
 						rs.getString("address")
 					);
-			System.out.println("Data recieved from db");	
-		    }
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -83,14 +83,14 @@ public class ClientStore extends AbstractTableModel  {
 	
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		 Client user = clients.get(rowIndex);
+		 Client client = clients.get(rowIndex);
 		 switch(columnIndex) {
-			 case 0: return user.getFirstname();
-			 case 1: return user.getLastname();
-			 case 2: return user.getIdentifier();
-			 case 3: return user.getDrivingLicense();
-			 case 4: return user.getBirthDate();
-			 case 5: return user.getAddress();
+			 case 0: return client.getFirstname();
+			 case 1: return client.getLastname();
+			 case 2: return client.getIdentifier();
+			 case 3: return client.getDrivingLicense();
+			 case 4: return client.getBirthDate();
+			 case 5: return client.getAddress();
 			 default: return "NaN";
 		 }
 	 } 
@@ -106,23 +106,23 @@ public class ClientStore extends AbstractTableModel  {
 			db.updateData(client.getId(), "clients", "firstname", newVal);
 			break;
 		case 1:
-			this.clients.get(rowIndex).setLastname(newVal);
+			client.setLastname(newVal);
 			db.updateData(client.getId(), "clients", "lastname", newVal);
 			break;
 		case 2:
-			this.clients.get(rowIndex).setIdentifier(newVal);
+			client.setIdentifier(newVal);
 			db.updateData(client.getId(), "clients", "identifier", newVal);
 			break;
 		case 3:
-			this.clients.get(rowIndex).setDrivingLicense(newVal);
+			client.setDrivingLicense(newVal);
 			db.updateData(client.getId(), "clients", "drivingLicense", newVal);
 			break;
 		case 4:
-			this.clients.get(rowIndex).setBirthDate(newVal);
+			client.setBirthDate(newVal);
 			db.updateData(client.getId(), "clients", "birthDate", newVal);
 			break;
 		case 5:
-			this.clients.get(rowIndex).setAddress(newVal);
+			client.setAddress(newVal);
 			db.updateData(client.getId(), "clients", "address", newVal);
 			break;
 		default:

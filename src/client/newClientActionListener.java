@@ -21,10 +21,10 @@ import javax.swing.SwingConstants;
 
 import main.DatabaseConnection;
 
-public class newClientActionListener implements ActionListener {
+public class NewClientActionListener implements ActionListener {
 	private JPanel parentPanel;
 	
-	public newClientActionListener(JPanel parentPanel){
+	public NewClientActionListener(JPanel parentPanel){
 		this.parentPanel = parentPanel;
 	}
 	@Override
@@ -101,9 +101,6 @@ public class newClientActionListener implements ActionListener {
 		saveButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(fistnameField.getText());
-				System.out.println(fistnameField.getText() == null);
-				System.out.println(fistnameField.getText().equals(""));
 				if(!fistnameField.getText().equals("") && !lastnameField.getText().equals("") && !identifierField.getText().equals("")){
 					List<String> fields = Arrays.asList("firstname", "lastname", "identifier", "drivingLicense", "birthDate", "address");
 					List<String> values = Arrays.asList(
